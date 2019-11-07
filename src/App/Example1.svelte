@@ -55,6 +55,8 @@
     .error{color:red}
 </style>
 
+
+<h1>Demo</h1>
 <button on:click={exec(becomeAdmin)}>Become Admin</button> 
 <button on:click={exec(abdicateAsAdmin)}>Abdicate as admin</button>
 <button on:click={exec(becomeEditor)}>Become Editor</button> 
@@ -73,15 +75,13 @@
 
 <div class='error'>{currentError}</div>
 
+<hr>
+<h1>Example 1</h1>
+<p>This is an example of the `editable` toolbox in action.</p>
 <p>
-    The way this works is that there are states: read only, admin, edit, dirty, and saving. The order of these states is deliberate. You can only go from one to the next, and if you try to skip up a state then it throws an error.
+    The "current state" of the component is kept track of internally inside of editable.js. It can be one of five different states: read only, admin, edit, dirty, and saving.
 </p>
 <p>
-    Should it be permissible to go down as many states as you want? The issue is with handling unsaved edited text and then abdicating.
+    There are functions provided to switch from one state to another. You can only go "up" from read only to admin, from admin to edit, from edit to dirty, and from dirty to saving. You can go down to any state.
 </p>
-<ol>
-    <li>edit will check if your'e in the right state and throw error if not, set to dirty state from edit state, and will also set modified</li>
-    <li>save will check if you're in the right state and throw error if not, (doesn't currently set to saving state because it's synchronous), set original/modified, and dispatch event.</li>
-    <li>cancel will check if your'e int he right state and throw error if not, set the currentState, and set modified (to null)</li>
-</ol>
 

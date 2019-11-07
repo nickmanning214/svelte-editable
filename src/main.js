@@ -1,17 +1,17 @@
-import BigExample from './App/BigExample.svelte';
-import BigExampleNoErrors from './App/BigExampleNoErrors.svelte';
+import Example1 from './App/Example1.svelte';
+import Example2 from './App/Example2.svelte';
 
 const pathname = window.location.pathname;
 
 
 
- if (pathname=='/BigExample'){
-	const app = new BigExample({
+ if (pathname=='/Example1'){
+	const app = new Example1({
 		target: document.body
 	});
 }
-else if (pathname=='/BigExampleNoErrors'){
-	const app = new BigExampleNoErrors({
+else if (pathname=='/Example2'){
+	const app = new Example2({
 		target: document.body
 	});
 }
