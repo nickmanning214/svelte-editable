@@ -53,6 +53,7 @@
 </script>
 <style>
     .error{color:red}
+    section{max-width:720px;}
 </style>
 
 
@@ -76,6 +77,7 @@
 <div class='error'>{currentError}</div>
 
 <hr>
+<section>
 <h1>Example 1</h1>
 <p>This is an example of the `editable` toolbox in action.</p>
 <p>
@@ -84,4 +86,5 @@
 <p>
     There are functions provided to switch from one state to another. You can only go "up" from read only to admin, from admin to edit, from edit to dirty, and from dirty to saving. You can go down to any state.
 </p>
-
+<p>If you commit the wrong action at the wrong time, then an error is thrown. For example, try to click "Save". It will say you're not in edit mode so you can't save. </p>
+</section>
