@@ -87,4 +87,5 @@
     There are functions provided to switch from one state to another. You can only go "up" from read only to admin, from admin to edit, from edit to dirty, and from dirty to saving. You can go down to any state.
 </p>
 <p>If you commit the wrong action at the wrong time, then an error is thrown. For example, try to click "Save". It will say you're not in edit mode so you can't save. </p>
+<a href="/Example2">Example 2</a>
 </section>
