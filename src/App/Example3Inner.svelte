@@ -38,7 +38,6 @@
     } = editable(createEventDispatcher,originalValue);
 
     $:{
-        debugger;
         if (isAdmin & !$isAdminMode) becomeAdmin();
         else if (!isAdmin && $isAdminMode) abdicateAsAdmin();
     }
