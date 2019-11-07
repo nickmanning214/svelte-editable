@@ -72,3 +72,9 @@
 <div>isSavingState <Value value={$isSavingState}/> isSavingMode: <Value value={$isSavingMode}/></div>
 
 <div class='error'>{currentError}</div>
+<section>
+<h1>Example 2</h1>
+<p>In this example, I check the values of isAdminState, isEditState, etc to disable buttons when clicking them would cause an error.</p>
+
+<a href="/Example3">Example 3</a>
+</section>
