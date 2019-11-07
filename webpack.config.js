@@ -1,11 +1,9 @@
 var path = require('path');
 //const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
-const isDevelopment = false;
-
 module.exports = {
-  //mode: 'production',
-  mode: 'development',
+  mode: 'production',
+  
 
   entry: {
     'index':'./src/editable.js'

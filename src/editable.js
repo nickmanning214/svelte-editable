@@ -147,14 +147,12 @@ function editable(createEventDispatcher,initialValue,strictMode=true){
     }
 
     function edit(val){
-        console.log(val)
         if (get(currentState) < EDIT_STATE) throw Error('How are you editing when you are not in edit mode?!');
         modified.set(val);
         if (get(currentState)==EDIT_STATE) {
             currentState.set(DIRTY_STATE);
         }
         else if (get(currentState)==DIRTY_STATE){
-            console.log(val,get(original));
             if (val==get(original)) currentState.set(EDIT_STATE);
         }
     }
