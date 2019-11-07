@@ -1,6 +1,6 @@
 {
   "name": "svelte-editable",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "files": [
     "build/index.js"
   ],
