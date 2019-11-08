@@ -122,38 +122,56 @@ function editable(createEventDispatcher,initialValue,strictMode=true){
     //These functions update the currentState.
     //You can't jump from one state to the next arbitrarily. You have to come from the right state.
     function becomeAdmin(){
-        if (get(currentState) == READ_ONLY_STATE) currentState.set(ADMIN_STATE);
+        if (get(currentState) == READ_ONLY_STATE){ 
+            currentState.set(ADMIN_STATE);
+            dispatch('becomeAdmin');
+        }
         else if (get(currentState) >= ADMIN_STATE) throw Error('You are already an admin');
+
     }
 
     //You can only reliquish being an admin if you are an admin
     function abdicateAsAdmin(){
-        if (get(currentState) >= ADMIN_STATE) currentState.set(READ_ONLY_STATE);
+        if (get(currentState) >= ADMIN_STATE) {
+            currentState.set(READ_ONLY_STATE);
+            dispatch('abdicateAsAdmin');
+        }
         else if (get(currentState) < ADMIN_STATE) throw Error('You can\'t abdicate as an admin if you are not an admin');
+
     }
 
     //You can only become an editor from an admin
     function becomeEditor(){
         if (get(currentState) == READ_ONLY_STATE) throw Error('You are not an admin so you cannot enter edit mode');
-        else if (get(currentState) == ADMIN_STATE) currentState.set(EDIT_STATE);
+        else if (get(currentState) == ADMIN_STATE) {
+            currentState.set(EDIT_STATE);
+            dispatch('becomeEditor');
+        }
         else if (get(currentState) >= EDIT_STATE) throw Error('You are already in edit mode');
+
     }
 
     function abdicateAsEditor(){
         if (get(currentState) <= ADMIN_STATE) throw Error('You can\'t abdicate as an editor if you are not an editor');
-        else if (get(currentState) == EDIT_STATE) currentState.set(ADMIN_STATE);
+        else if (get(currentState) == EDIT_STATE) {
+            currentState.set(ADMIN_STATE);
+            dispatch('abdicateAsEditor');
+        }
         else if (get(currentState) == DIRTY_STATE) throw Error('You have to save or cancel before abdicating as an editor');
         else if (get(currentState) == SAVE_STATE) throw Error('You can\'t abdicate as an editor while saving. Wait until saving is finished.');
     }
 
     function edit(val){
         if (get(currentState) < EDIT_STATE) throw Error('How are you editing when you are not in edit mode?!');
-        modified.set(val);
-        if (get(currentState)==EDIT_STATE) {
-            currentState.set(DIRTY_STATE);
-        }
-        else if (get(currentState)==DIRTY_STATE){
-            if (val==get(original)) currentState.set(EDIT_STATE);
+        else{
+            modified.set(val);
+            if (get(currentState)==EDIT_STATE) {
+                currentState.set(DIRTY_STATE);
+            }
+            else if (get(currentState)==DIRTY_STATE){
+                if (val==get(original)) currentState.set(EDIT_STATE);
+            }
+            dispatch('edit');
         }
     }
 
@@ -175,8 +193,11 @@ function editable(createEventDispatcher,initialValue,strictMode=true){
 
     function cancel(){
         if (get(currentState) < EDIT_STATE) throw Error('How are you cancelling when you are not in edit mode?');
-        currentState.set(ADMIN_STATE);
-        modified.set(null);
+        else {
+            currentState.set(ADMIN_STATE);
+            modified.set(null);
+            dispatch('cancel');
+        }
     }
 
     function onReceieveValueProp(value){
