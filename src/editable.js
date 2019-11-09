@@ -132,6 +132,11 @@ function editable(createEventDispatcher,initialValue,strictMode=true){
 
     //You can only reliquish being an admin if you are an admin
     function abdicateAsAdmin(){
+
+        if (get(currentState) == DIRTY_STATE){
+            _cancel();
+        }
+
         if (get(currentState) >= ADMIN_STATE) {
             currentState.set(READ_ONLY_STATE);
             dispatch('abdicateAsAdmin');
@@ -191,11 +196,15 @@ function editable(createEventDispatcher,initialValue,strictMode=true){
 
     }
 
+    function _cancel(){ //private methods don't dispatch or error check
+        modified.set(null);
+        currentState.set(ADMIN_STATE);
+    }
+
     function cancel(){
         if (get(currentState) < EDIT_STATE) throw Error('How are you cancelling when you are not in edit mode?');
         else {
-            currentState.set(ADMIN_STATE);
-            modified.set(null);
+            _cancel();
             dispatch('cancel');
         }
     }
@@ -239,7 +248,7 @@ function editable(createEventDispatcher,initialValue,strictMode=true){
         edit,
         save,
         cancel,
-        handleNewAdminFromProp,
+        handleNewAdminFromProp,//maybe call this isAdmin
         handleNewValueFromProp
 
     }
