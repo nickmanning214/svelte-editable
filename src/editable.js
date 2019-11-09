@@ -200,7 +200,12 @@ function editable(createEventDispatcher,initialValue,strictMode=true){
         }
     }
 
-    function onReceieveValueProp(value){
+    function handleNewAdminFromProp(isAdmin){
+        if (isAdmin & !get(isAdminMode)) becomeAdmin();
+        else if (!isAdmin && get(isAdminMode)) abdicateAsAdmin();
+    }
+
+    function handleNewValueFromProp(value){
         original.set(value);
         currentState.set(ADMIN_STATE);
         modified.set(null);
@@ -234,7 +239,8 @@ function editable(createEventDispatcher,initialValue,strictMode=true){
         edit,
         save,
         cancel,
-        onReceieveValueProp
+        handleNewAdminFromProp,
+        handleNewValueFromProp
 
     }
 }
