@@ -216,7 +216,7 @@ function editable(createEventDispatcher,initialValue,strictMode=true){
 
     function handleNewValueFromProp(value){
         original.set(value);
-        currentState.set(ADMIN_STATE);
+        if (get(currentState) >= ADMIN_STATE) currentState.set(ADMIN_STATE);
         modified.set(null);
     }
 

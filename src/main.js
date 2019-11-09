@@ -1,6 +1,7 @@
 import Example1 from './App/Example1.svelte';
 import Example2 from './App/Example2.svelte';
 import Example3 from './App/Example3.svelte';
+import EditableShortTextApp from './App/sandbox/EditableShortTextApp.svelte';
 
 const pathname = window.location.pathname;
 
@@ -18,6 +19,11 @@ else if (pathname=='/Example2'){
 }
 else if (pathname=='/Example3'){
 	const app = new Example3({
+		target: document.body
+	});
+}
+else if (pathname=='/EditableShortTextApp'){
+	const app = new EditableShortTextApp({
 		target: document.body
 	});
 }

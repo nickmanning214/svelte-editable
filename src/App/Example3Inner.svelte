@@ -34,12 +34,12 @@
         edit,
         save,
         cancel,
-        onReceieveValueProp
+        handleReceiveValueFromProp,
+        handleNewAdminFromProp
     } = editable(createEventDispatcher,originalValue);
 
     $:{
-        if (isAdmin & !$isAdminMode) becomeAdmin();
-        else if (!isAdmin && $isAdminMode) abdicateAsAdmin();
+        handleNewAdminFromProp(isAdmin)
     }
 
     let currentError = '';
