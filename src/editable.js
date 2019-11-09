@@ -209,7 +209,7 @@ function editable(createEventDispatcher,initialValue,strictMode=true){
         }
     }
 
-    function handleNewAdminFromProp(isAdmin){
+    function handleNewIsAdminFromProp(isAdmin){
         if (isAdmin & !get(isAdminMode)) becomeAdmin();
         else if (!isAdmin && get(isAdminMode)) abdicateAsAdmin();
     }
@@ -248,7 +248,7 @@ function editable(createEventDispatcher,initialValue,strictMode=true){
         edit,
         save,
         cancel,
-        handleNewAdminFromProp,//maybe call this isAdmin
+        handleNewIsAdminFromProp,
         handleNewValueFromProp
 
     }
