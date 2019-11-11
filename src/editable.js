@@ -176,7 +176,7 @@ function editable(createEventDispatcher,initialValue,strictMode=true){
             else if (get(currentState)==DIRTY_STATE){
                 if (val==get(original)) currentState.set(EDIT_STATE);
             }
-            dispatch('edit');
+            dispatch('edit',{value:val});
         }
     }
 
