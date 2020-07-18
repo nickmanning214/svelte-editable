@@ -20,7 +20,7 @@
   "dependencies": {
     "@babel/core": "^7.6.4",
     "babel-preset-env": "^1.7.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "sirv-cli": "^0.4.4"
   },
   "scripts": {
